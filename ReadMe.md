@@ -15,5 +15,7 @@ model放在model里面
 ## PS
 # 2020年7月15日
 ## 功能
-用户登录
+- 用户登录
+- jwt [参考链接](https://baijiahao.baidu.com/s?id=1608021814182894637&wfr=spider&for=pc)
+
 ## 下载了很多的依赖包，那些依赖包是如何管理的？
