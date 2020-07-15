@@ -121,6 +121,14 @@ func Login(c *gin.Context) {
 		"message": "登录成功",
 	})
 }
+
+func Info(c *gin.Context) {
+	// 获取信息的时候，应该是已经通过认证的。所以说是直接从上下文中获取用户信息
+	// 在token中解析出用户ID等信息，不需要登录获取。
+	user, _ := c.Get("user")
+
+	c.JSON(http.StatusOK, gin.H{"code":200, "data":gin.H{"user":user}})
+}
 func isTelephoneExist(db *gorm.DB, telephone string) bool {
 	var user model.User
 	db.Where("telephone = ?", telephone).First(&user)  // 获取第一个匹配记录SELECT * FROM users WHERE name = 'jinzhu' limit 1;
@@ -129,4 +137,6 @@ func isTelephoneExist(db *gorm.DB, telephone string) bool {
 	}
 	return false
 }
+
+
 

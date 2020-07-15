@@ -36,3 +36,14 @@ func ReleaseToken(user model.User) (string, error) {
 	eyJVc2VySWQiOjQsImV4cCI6MTU5NTQwOTI0OSwiaWF0IjoxNTk0ODA0NDQ5LCJpc3MiOiJZRyIsInN1YiI6InVzZXIgdG9rZW4ifQ.
 	GA2e2jIcCCK6trVy415Gu0jK0nt1o8ES1Ym8ZOT5Cs8*/
 }
+
+// 从tokenstring中解析出token
+func ParseToken(tokenstring string) (*jwt.Token, *Claims, error){
+	claims := &Claims{}
+	// 2020年7月15日19:26:51 从token中解析不到正确的用户信息
+	token, err := jwt.ParseWithClaims(tokenstring, claims, func(token *jwt.Token) (interface{}, error) {
+		return jwtKey, nil
+	})
+
+	return token, claims, err
+}
