@@ -9,7 +9,7 @@ import (
 // 但不是所有函数都需要. "_"符号可以只导入init，而不需要导入其他函数。
 
 func main() {
-	db := common.InitDB()
+	db := common.InitDB()  // 这里的DB是如何创建的。
 	defer db.Close()
 	r := gin.Default()
 	r = ginEssential.CollectRoute(r)

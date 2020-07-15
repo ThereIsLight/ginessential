@@ -6,5 +6,5 @@ type User struct {
 	gorm.Model
 	Name string `gorm:"type:varchar(20);not null"`
 	Telephone string `gorm:"type:varchar(11);not null;unique"`
-	Password string `gorm:"size:255;not null"`
+	Password string `gorm:"size:255;not null"`  // 这里之所以不同是因为后面需要将密码加密存储
 }
