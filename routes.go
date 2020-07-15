@@ -1,4 +1,4 @@
-package ginEssential
+package main
 
 import (
 	"ginEssential/controller"

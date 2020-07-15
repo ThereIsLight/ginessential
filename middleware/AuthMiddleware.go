@@ -3,6 +3,7 @@ package middleware
 import (
 	"ginEssential/common"
 	"ginEssential/model"
+	"ginEssential/response"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -15,7 +16,9 @@ func AuthMiddleware() gin.HandlerFunc {
 		tokenString := c.GetHeader("Authorization")  //从请求body中获取tokenstring
 		log.Printf("token:=  %v", tokenString)
 		if tokenString == "" || !strings.HasPrefix(tokenString, "Bearer ") {
-			c.JSON(http.StatusUnauthorized, gin.H{"code":401, "msg":"权限不足,token字符串为空"})
+			// 后面就不修改了。
+			response.Response(c, http.StatusUnauthorized, 401, nil, "权限不足,token字符串为空")
+			// c.JSON(http.StatusUnauthorized, gin.H{"code":401, "msg":"权限不足,token字符串为空"})
 			c.Abort()  // 作用？？
 			return
 		}

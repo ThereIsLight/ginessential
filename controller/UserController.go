@@ -2,6 +2,7 @@ package controller
 
 import (
 	"ginEssential/common"
+	"ginEssential/dto"
 	"ginEssential/model"
 	"ginEssential/util"
 	"github.com/gin-gonic/gin"
@@ -127,7 +128,7 @@ func Info(c *gin.Context) {
 	// 在token中解析出用户ID等信息，不需要登录获取。
 	user, _ := c.Get("user")
 
-	c.JSON(http.StatusOK, gin.H{"code":200, "data":gin.H{"user":user}})
+	c.JSON(http.StatusOK, gin.H{"code":200, "data":gin.H{"user":dto.ToUserDTo(user.(model.User))}})  // 类型断言
 }
 func isTelephoneExist(db *gorm.DB, telephone string) bool {
 	var user model.User
